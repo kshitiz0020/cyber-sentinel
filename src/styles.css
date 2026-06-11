@@ -199,4 +199,5 @@
 a, button, [role="button"], input, textarea { cursor: none; }
 @media (max-width: 768px) {
   body, a, button, input, textarea, [role="button"] { cursor: auto; }
+  }
 }
