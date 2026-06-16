@@ -43,6 +43,8 @@ function useTypewriter(words: string[], speed = 80, pause = 1800) {
 }
 
 export function Hero() {
+  const typed = useTypewriter(roles);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
       {/* background */}
