@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, ShieldCheck, Terminal, Wifi, Lock } from "lucide-react";
 import { MatrixRain } from "./MatrixRain";
@@ -8,7 +9,42 @@ const stats = [
   { v: "4 mo", l: "Internship" },
 ];
 
+const roles = [
+  "Cybersecurity Analyst",
+  "Ethical Hacking",
+  "Network Security",
+];
+
+function useTypewriter(words: string[], speed = 80, pause = 1800) {
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = words[wordIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && text === current) {
+      timeout = setTimeout(() => setIsDeleting(true), pause);
+    } else if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+    } else {
+      const next = isDeleting
+        ? current.slice(0, text.length - 1)
+        : current.slice(0, text.length + 1);
+      timeout = setTimeout(() => setText(next), isDeleting ? speed / 2.5 : speed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, wordIndex, words, speed, pause]);
+
+  return text;
+}
+
 export function Hero() {
+  const typed = useTypewriter(roles);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
       {/* background */}
@@ -33,10 +69,8 @@ export function Hero() {
             <br />
             <span className="text-gradient">Sharma.</span>
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-white/80 font-mono">
-            <span className="text-[#00F5D4]">$</span> Cybersecurity Analyst
-            <span className="text-white/40"> · </span> Ethical Hacking
-            <span className="text-white/40"> · </span> Network Security
+          <p className="mt-4 text-lg md:text-xl text-white/80 font-mono h-8">
+            <span className="text-[#00F5D4]">$</span> {typed}
             <span className="terminal-caret" />
           </p>
           <p className="mt-6 text-base text-white/65 max-w-xl leading-relaxed">
