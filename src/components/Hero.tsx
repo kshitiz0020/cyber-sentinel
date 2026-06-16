@@ -67,10 +67,8 @@ export function Hero() {
             <br />
             <span className="text-gradient">Sharma.</span>
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-white/80 font-mono">
-            <span className="text-[#00F5D4]">$</span> Cybersecurity Analyst
-            <span className="text-white/40"> · </span> Ethical Hacking
-            <span className="text-white/40"> · </span> Network Security
+          <p className="mt-4 text-lg md:text-xl text-white/80 font-mono h-8">
+            <span className="text-[#00F5D4]">$</span> {typed}
             <span className="terminal-caret" />
           </p>
           <p className="mt-6 text-base text-white/65 max-w-xl leading-relaxed">
