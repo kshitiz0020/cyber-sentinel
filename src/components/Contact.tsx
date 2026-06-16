@@ -12,10 +12,10 @@ export function Contact() {
     "> bypassing firewall ............ OK",
     "> cracking mainframe ............ OK",
     "",
-    "🚨 ACCESS GRANTED 🚨",
+    "📬 OPENING GMAIL APP ...",
     "",
-    "You have been hacked... just kidding 😄",
-    "Your message has been successfully delivered.",
+    "Your email client is being launched",
+    "with your message pre-filled.",
     "",
     "> connection terminated. stay safe.",
   ].join("\n");
