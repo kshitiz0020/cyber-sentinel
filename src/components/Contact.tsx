@@ -22,11 +22,12 @@ export function Contact() {
 
   useEffect(() => {
     if (!open) { setTyped(""); return; }
+    const chars = Array.from(fullText);
     let i = 0;
     const id = setInterval(() => {
       i++;
-      setTyped(fullText.slice(0, i));
-      if (i >= fullText.length) clearInterval(id);
+      setTyped(chars.slice(0, i).join(""));
+      if (i >= chars.length) clearInterval(id);
     }, 18);
     return () => clearInterval(id);
   }, [open]);
