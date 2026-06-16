@@ -35,6 +35,12 @@ export function Contact() {
   const submit = (e: FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
+    const subject = encodeURIComponent(form.subject || "Contact from Portfolio");
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+    );
+    const mailto = `mailto:kshitijsharma618@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
     setOpen(true);
     setForm({ name: "", email: "", subject: "", message: "" });
   };
