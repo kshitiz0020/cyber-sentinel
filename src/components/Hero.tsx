@@ -9,6 +9,39 @@ const stats = [
   { v: "4 mo", l: "Internship" },
 ];
 
+const roles = [
+  "Cybersecurity Analyst",
+  "Ethical Hacking",
+  "Network Security",
+];
+
+function useTypewriter(words: string[], speed = 80, pause = 1800) {
+  const [text, setText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = words[wordIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && text === current) {
+      timeout = setTimeout(() => setIsDeleting(true), pause);
+    } else if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+    } else {
+      const next = isDeleting
+        ? current.slice(0, text.length - 1)
+        : current.slice(0, text.length + 1);
+      timeout = setTimeout(() => setText(next), isDeleting ? speed / 2.5 : speed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, wordIndex, words, speed, pause]);
+
+  return text;
+}
+
 export function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
