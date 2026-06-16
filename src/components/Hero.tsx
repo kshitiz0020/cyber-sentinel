@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, ShieldCheck, Terminal, Wifi, Lock } from "lucide-react";
 import { MatrixRain } from "./MatrixRain";
